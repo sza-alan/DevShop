@@ -1,6 +1,37 @@
+using DevShop.Application.DTOs;
+using DevShop.Application.Interfaces;
+using DevShop.Application.Services;
+using DevShop.Infrastructure.Persistence;
+using DevShop.Infrastructure.Persistence.Repositories;
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<DevShopDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+        config.RegisterValidatorsFromAssembly(typeof(CreateProductDto).Assembly));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
