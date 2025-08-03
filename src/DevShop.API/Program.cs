@@ -1,8 +1,10 @@
 using DevShop.Application.DTOs;
+using DevShop.Application.Implementation;
 using DevShop.Application.Interfaces;
 using DevShop.Application.Services;
 using DevShop.Infrastructure.Persistence;
 using DevShop.Infrastructure.Persistence.Repositories;
+using DevShop.Infrastructure.Security;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,10 @@ builder.Services.AddDbContext<DevShopDbContext>(options =>
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUnitOfWork, DevShopDbContext>();
 
 builder.Services.AddControllers()
     .AddFluentValidation(config =>
