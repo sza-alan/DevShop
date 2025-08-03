@@ -6,5 +6,6 @@ namespace DevShop.Application.Services
     {
         Task<bool> RegisterUserAsync(RegisterUserDto registerUserDto);
         Task<string?> LoginAsync(LoginUserDto loginUserDto);
+        Task<bool> RegisterAdminAsync(RegisterUserDto registerUserDto);
     }
 }

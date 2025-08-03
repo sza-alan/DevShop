@@ -1,11 +1,14 @@
 ﻿using DevShop.Application.DTOs;
 using DevShop.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace DevShop.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
@@ -31,6 +34,7 @@ namespace DevShop.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto productDto)
         {
             var product = await _productService.CreateProductAsync(productDto);

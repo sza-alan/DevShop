@@ -1,18 +1,16 @@
-version: '3.8'
-
 services:
   postgres_db:
     image: postgres:14.5
     container_name: devshop_postgres
     restart: always
     environment:
-      - POSTGRES_USER=alansouza
-      - POSTGRES_PASSWORD=Alan@2112
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=devpassword
       - POSTGRES_DB=devshop_db
     ports:
       - "5433:5432"
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - devshop_db_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  devshop_db_data:

@@ -15,14 +15,12 @@ namespace DevShop.Application.Implementation
         private readonly IUserRepository _userRepository;
         private readonly IPasswordHashingService _passwordHashingService;
         private readonly IConfiguration _configuration;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public AuthService(IUserRepository userRepository, IPasswordHashingService passwordHashingService, IConfiguration configuration, IUnitOfWork unitOfWork)
+        public AuthService(IUserRepository userRepository, IPasswordHashingService passwordHashingService, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _passwordHashingService = passwordHashingService;
             _configuration = configuration;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<string?> LoginAsync(LoginUserDto loginUserDto)
@@ -41,16 +39,28 @@ namespace DevShop.Application.Implementation
 
         public async Task<bool> RegisterUserAsync(RegisterUserDto registerUserDto)
         {
-            var existingUser = _userRepository.GetByEmailAsync(registerUserDto.Email);
-            if (existingUser == null) 
-                return false;
+            var existingUser = await _userRepository.GetByEmailAsync(registerUserDto.Email);
+            if (existingUser != null) return false;
 
             var passwordHash = _passwordHashingService.Hash(registerUserDto.Password);
 
             var user = new User(registerUserDto.Email, passwordHash, "Customer");
 
             await _userRepository.AddAsync(user);
-            await _unitOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> RegisterAdminAsync(RegisterUserDto registerUserDto)
+        {
+            var existingUser = await _userRepository.GetByEmailAsync(registerUserDto.Email);
+            if (existingUser != null) return false;
+
+            var passwordHash = _passwordHashingService.Hash(registerUserDto.Password);
+
+            var user = new User(registerUserDto.Email, passwordHash, "Admin");
+
+            await _userRepository.AddAsync(user);
 
             return true;
         }
@@ -68,7 +78,7 @@ namespace DevShop.Application.Implementation
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("role", user.Role)
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var token = new JwtSecurityToken(
