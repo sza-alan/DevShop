@@ -8,13 +8,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5F44191E-B14
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevShop.API", "src\DevShop.API\DevShop.API.csproj", "{E18A00E6-F486-4063-A914-32B180EEB5E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevShop.API", "src\DevShop.API\DevShop.API.csproj", "{E18A00E6-F486-4063-A914-32B180EEB5E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevShop.Application", "src\DevShop.Application\DevShop.Application.csproj", "{0B0F53D3-885B-4016-8CE5-9E0401D95F32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevShop.Application", "src\DevShop.Application\DevShop.Application.csproj", "{0B0F53D3-885B-4016-8CE5-9E0401D95F32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevShop.Domain", "src\DevShop.Domain\DevShop.Domain.csproj", "{7ABC9F8E-2CC9-4039-8F51-11F4DAE1547B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevShop.Domain", "src\DevShop.Domain\DevShop.Domain.csproj", "{7ABC9F8E-2CC9-4039-8F51-11F4DAE1547B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevShop.Infrastructure", "src\DevShop.Infrastructure\DevShop.Infrastructure.csproj", "{29C26565-1EF9-4A7C-AD48-417BAB1674E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevShop.Infrastructure", "src\DevShop.Infrastructure\DevShop.Infrastructure.csproj", "{29C26565-1EF9-4A7C-AD48-417BAB1674E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F2F74664-768A-47E6-A5E5-7921528E254B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevShop.UnitTests", "tests\DevShop.UnitTests\DevShop.UnitTests.csproj", "{F8B77E0D-3B99-4E3C-B634-9032473485D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,10 @@ Global
 		{29C26565-1EF9-4A7C-AD48-417BAB1674E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29C26565-1EF9-4A7C-AD48-417BAB1674E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29C26565-1EF9-4A7C-AD48-417BAB1674E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8B77E0D-3B99-4E3C-B634-9032473485D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8B77E0D-3B99-4E3C-B634-9032473485D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8B77E0D-3B99-4E3C-B634-9032473485D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8B77E0D-3B99-4E3C-B634-9032473485D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{0B0F53D3-885B-4016-8CE5-9E0401D95F32} = {5F44191E-B14E-4CEB-A01A-7CA837417FF4}
 		{7ABC9F8E-2CC9-4039-8F51-11F4DAE1547B} = {5F44191E-B14E-4CEB-A01A-7CA837417FF4}
 		{29C26565-1EF9-4A7C-AD48-417BAB1674E2} = {5F44191E-B14E-4CEB-A01A-7CA837417FF4}
+		{F8B77E0D-3B99-4E3C-B634-9032473485D6} = {F2F74664-768A-47E6-A5E5-7921528E254B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B9DB0DEB-CDC5-43F3-8B0D-6D0A7898FD53}

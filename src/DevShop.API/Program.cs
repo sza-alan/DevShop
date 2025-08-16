@@ -97,3 +97,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+namespace DevShop.API
+{
+    public partial class Program { }
+}
